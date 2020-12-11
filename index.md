@@ -60,6 +60,8 @@ The figure above shows an overview of the preprocessed data inputs, the learning
 # 3. Dataset and Dataset Synthesis
 The dataset used for the speech separation was a subset of Google’s [AVSpeech dataset](https://looking-to-listen.github.io/avspeech/download.html). In its raw form, the AVSpeech dataset provides a collection of YouTube links of three to ten second videos of single person speech. The AVSpeech data set contains over 280,000 random samples of videos of speakers with mixed languages with no interfering background noise. To build a training set for single channel speech separation the single speaker audio from the YouTube videos would need to be superimposed to synthesize a useful dataset. A spectrogram from the normalized mixed audio was then derived using a short-time fourier transform and concatenated with the visual feature vector. The following steps to generate a usable dataset can be described below.
 
+$$ \text{triplet loss}=\sum_{i=1}^N [||f^a_i-f_i^p||_2^2-||f^a_i-f_i^n||_2^2 %2B \alpha]_{%2B}$$
+
 * Extract (download and re-encode) raw audio/video data
   * youtube-dl to download data
   * ffmpeg to extract frames and audio stream
